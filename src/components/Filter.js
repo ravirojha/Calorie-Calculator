@@ -1,14 +1,22 @@
-import { Button } from '@chakra-ui/react';
+import { Button, ButtonGroup } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../App.css';
 
-function Filter({ filteredData, setFilteredData, foodData }) {
-  const [startDate, setStartDate] = useState(new Date('2020/01/01'));
-  const [endDate, setEndDate] = useState(new Date());
-
+function Filter({
+  filteredData,
+  setFilteredData,
+  foodData,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+  filter,
+  setFilter
+}) {
   const handleFilter = () => {
+    setFilter(true);
     const tempData = foodData.filter((food) => {
       if (food.date > startDate && food.date < endDate) {
         return food;
@@ -42,7 +50,10 @@ function Filter({ filteredData, setFilteredData, foodData }) {
         showYearDropdown
         dropdownMode="select"
       />
-      <Button onClick={handleFilter}>Filter</Button>
+      <ButtonGroup spacing="6">
+        <Button onClick={handleFilter}>Filter</Button>
+        <Button onClick={() => setFilter(false)}>Clear</Button>
+      </ButtonGroup>
     </>
   );
 }

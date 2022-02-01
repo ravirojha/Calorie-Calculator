@@ -35,6 +35,10 @@ function FoodEntries() {
   const [action, setAction] = useState('add');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [loading, setLoading] = useState(true);
+  const [startDate, setStartDate] = useState(new Date('2020/01/01'));
+  const [endDate, setEndDate] = useState(new Date());
+  const [filter, setFilter] = useState(false);
+
   useEffect(() => {
     setLoading(true);
     FoodService.fetchFoods({ minCalorie: 20, maxCalorie: 500 }).then((data) => {
@@ -42,6 +46,17 @@ function FoodEntries() {
       setLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    if (filter === true) {
+      const tempData = foodData.filter((food) => {
+        if (food.date > startDate && food.date < endDate) {
+          return food;
+        }
+      });
+      setFilteredData(tempData);
+    }
+  }, [foodData, filter]);
 
   const handleDelete = (id) => {
     const tempData = foodData.filter((food) => food.id !== id);
@@ -55,9 +70,9 @@ function FoodEntries() {
   };
 
   useEffect(() => {
-    if (filteredData.length > 0) setVariable(filteredData);
+    if (filter === true) setVariable(filteredData);
     else setVariable(foodData);
-  }, [filteredData, filteredData.length, foodData]);
+  }, [filter, filteredData, foodData]);
 
   return (
     <>
@@ -65,6 +80,12 @@ function FoodEntries() {
         filteredData={filteredData}
         setFilteredData={setFilteredData}
         foodData={foodData}
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
+        filter={filter}
+        setFilter={setFilter}
       />
 
       <Table variant="striped" colorScheme="blackAlpha" size="md">
