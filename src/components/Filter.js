@@ -26,6 +26,7 @@ function Filter({
   return (
     <>
       <DatePicker
+        popperPlacement="bottom"
         className="date-picker range-picker"
         selected={startDate}
         onChange={(date) => setStartDate(date)}
@@ -37,6 +38,7 @@ function Filter({
         dropdownMode="select"
       />
       <DatePicker
+        popperPlacement="bottom"
         className="date-picker range-picker"
         selected={endDate}
         onChange={(date) => setEndDate(date)}

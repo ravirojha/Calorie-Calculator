@@ -98,6 +98,7 @@ function ModalWindow({
                 <FormLabel htmlFor="date">Date</FormLabel>
 
                 <DatePicker
+                  popperPlacement="bottom"
                   className="date-picker"
                   showTimeSelect
                   dateFormat="MMMM d, yyyy h:mm aa"
