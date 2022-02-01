@@ -10,7 +10,6 @@ import {
   Button,
   useDisclosure,
   ButtonGroup,
-  toast,
   useToast,
   Spinner
 } from '@chakra-ui/react';
@@ -18,7 +17,6 @@ import { WarningTwoIcon } from '@chakra-ui/icons';
 
 import moment from 'moment';
 import ModalWindow from './ModalWindow';
-import uuid from 'react-uuid';
 import Filter from './Filter';
 
 function FoodEntries() {

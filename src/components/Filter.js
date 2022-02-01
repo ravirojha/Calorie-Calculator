@@ -1,18 +1,16 @@
 import { Button, ButtonGroup } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../App.css';
 
 function Filter({
-  filteredData,
   setFilteredData,
   foodData,
   startDate,
   setStartDate,
   endDate,
   setEndDate,
-  filter,
   setFilter
 }) {
   const handleFilter = () => {
